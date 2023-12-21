@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -30,12 +30,12 @@ namespace CONVERSIE
                 throw new Exception("Baza este <out of range>");
             }
 
-            double nrB10 = ConvertesteInB10(b1, nr);
+            decimal nrB10 = ConvertesteInB10(b1, nr);
 
             Console.Write("Rezultat: ");
 
             int ParteIntNrB10 = (int)Math.Truncate(nrB10);
-            double ParteFractNrB10 = nrB10 - ParteIntNrB10;
+            decimal ParteFractNrB10 = nrB10 - ParteIntNrB10;
 
             ConvertesteParteIntInB2(ParteIntNrB10,b2);
 
@@ -48,9 +48,9 @@ namespace CONVERSIE
             
         }
 
-        private static void ConvertesteParteFractInB2(double parteFract, int b2)
+        private static void ConvertesteParteFractInB2(decimal parteFract, int b2)
         {
-            List<double> fractii = new List<double>();
+            List<decimal> fractii = new List<decimal>();
             List<int> cifre = new List<int>();
 
             fractii.Add(parteFract);
@@ -97,13 +97,13 @@ namespace CONVERSIE
             }
         }
 
-        private static double ConvertesteInB10(int b1, string nr)
+        private static decimal ConvertesteInB10(int b1, string nr)
         {
             
             string cif = "0123456789ABCDEF";
-            double rezultat = 0;
+            decimal rezultat = 0;
             int parteInt = 0;
-            double parteFract = 0;
+            decimal parteFract = 0;
             int pozPunct = nr.IndexOf('.');
             int poz = 0;
             if (pozPunct != -1)
@@ -120,17 +120,17 @@ namespace CONVERSIE
                 parteInt = parteInt * b1 + cifra;
             }
 
-            double p = 1 / (double)b1;
+            decimal p = 1 / (decimal)b1;
 
             if(nr.IndexOf(".") != -1) 
             {
                 for(int i = nr.IndexOf(".") + 1; i < nr.Length; i++) 
                 {
-                    int cifra = cif.IndexOf(nr[i], 0, b1);
+                    decimal cifra = cif.IndexOf(nr[i], 0, b1);
                     if (cifra == -1)
                         throw new ArgumentException("Numarul nu este scris in baza b1.");
                     parteFract = parteFract + (cifra * p);
-                    p = p * (1 / (double)b1); 
+                    p = p * (1 / (decimal)b1); 
                 }
             }
             
