@@ -37,7 +37,10 @@ namespace CONVERSIE
             int ParteIntNrB10 = (int)Math.Truncate(nrB10);
             decimal ParteFractNrB10 = nrB10 - ParteIntNrB10;
 
-            ConvertesteParteIntInB2(ParteIntNrB10,b2);
+            if (ParteIntNrB10 == 0)
+                  Console.Write("0");
+            else
+                  ConvertesteParteIntInB2(ParteIntNrB10, b2);
 
             if(ParteFractNrB10 > 0) 
             {
