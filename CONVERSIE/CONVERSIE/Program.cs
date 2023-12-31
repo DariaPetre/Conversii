@@ -51,26 +51,40 @@ namespace CONVERSIE
             
         }
 
+     
         private static void ConvertesteParteFractInB2(decimal parteFract, int b2)
         {
             List<decimal> fractii = new List<decimal>();
-            List<int> cifre = new List<int>();
-
+            List<char> cifre = new List<char>();
+        
             fractii.Add(parteFract);
             bool periodica = false;
-            while (parteFract != 0 && !periodica) 
+            while (parteFract != 0 && !periodica)
             {
                 parteFract = parteFract * b2;
-                cifre.Add((int)Math.Truncate(parteFract));
+                if(parteFract < 10)
+                {
+                  int cif =(int)Math.Truncate(parteFract);
+                  string cif1 = cif.ToString();
+                  char cif2 = Convert.ToChar(cif1);
+                  cifre.Add(cif2);
+                }
+                else
+                {
+                    int c = (int)Math.Truncate(parteFract);
+                    char c1 = Convert.ToChar( 'A' + c % 10 );
+                    cifre.Add(c1);
+                }
+                  
                 parteFract = parteFract - (int)Math.Truncate(parteFract);
-
+        
                 if (!fractii.Contains(parteFract))
                 {
                     fractii.Add(parteFract);
                 }
                 else
-                  periodica = true;
-
+                    periodica = true;
+        
             }
             if (!periodica)
             {
