@@ -96,7 +96,10 @@ namespace CONVERSIE
            if(parteInt > 0)
             {
                 ConvertesteParteIntInB2(parteInt/b2 , b2);
-                Console.Write(parteInt % b2);
+                if(parteInt % b2 < 10)
+                   Console.Write(parteInt % b2);
+                else
+                    Console.Write(Convert.ToChar('A' + (parteInt % b2) % 10));
             }
         }
 
